@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+  <body>
+
+    <div class="container">
+      <h1 class="display-4 text-center my-3">The Gossip Project</h1>
+
+      <div class="row justify-content-center">
+          <div class="col-6">
+            <div class="card">
+              <img class="card-img-top" alt="Card image cap" src="https://hiro.pl/wp-content/uploads/2017/05/twin.jpg">
+              <div class="card-body">
+                <h5 class="card-title"><%=@gossip.title %></h5>
+                <p class="card-text"><%= @gossip.content %></p>
+                <p class="card-text">
+                <p class="card-text">
+                <p class="card-text"><a href="<%= city_path(@gossip.user.city.id) %>"><%= @gossip.user.city.name %></p></a>
+                  <small class="text-muted">
+                    posté par <a href="<%= user_path(@gossip.user.id) %>"><%=@gossip.user.first_name %></a>
+                    le <%=@gossip.created_at.strftime("%d/%m/%Y à %H:%I") %> à <%=@gossip.user.city.name %>
+                  </small>
+                </p>
+                <div class="row justify-content-center">
+                  <div class="col">
+                    <a class='btn btn-info btn-block' href="<%= edit_gossip_path %>">Editer</a>
+                  </div>
+                  <div class="col">
+                    <%= form_tag gossip_path(@gossip.id), method: "delete" do %>
+                    <%= submit_tag "Supprimer", {class: 'btn btn-danger btn-block'} %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+      </div>
+          
+<% @gossip.comments.each do |comment| %>
+                  <p> <strong><%= comment.user.first_name %></strong>  </p>
+                  <p>
+                    <strong>Commentaire :</strong>
+                    <%= comment.content %>
+                  </p>
+                  <%= link_to 'Modifier',  edit_gossip_comment_path(@gossip)%>
+                <% end %>
+                
+                 <h2>Ajouter un commentaire :</h2>
+                <%= form_with(model: [ @gossip, @gossip.comments.build ], local: true) do |form| %>
+                  <p>
+                    <%= form.label :content, 'Commentaire :' %><br>
+                    <%= form.text_area :content %>
+                  </p>
+                  <p>
+                    <%= form.submit 'Enregistrer', {:class=>"btn btn-success" } %>
+                  </p>
+                <% end %>
+  </body>
+
+</html>

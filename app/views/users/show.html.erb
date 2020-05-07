@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <h1>Profil de <%= @current_user.first_name %> <%= @current_user.last_name %></h1>
+  <div class="container">
+  <h1 class="display-4 text-center my-5">The Gossip Project</h1>
+
+      <div class="row justify-content-center">
+
+        <div class="card flex-row flex-wrap">
+          <div class="card-header border-0">
+            <img src="https://cnet3.cbsistatic.com/img/SpjCp2cIxJGEKNsveChpBbk27Fc=/940x0/2014/10/03/26bc6e31-8e32-46ed-aa6b-0a6784b9f722/thumbsup.jpg" alt=""
+                 width="300">
+          </div>
+          <div class="card-block px-2 mt-4 ml-3">
+            <h4 class="card-title h2"><%= @current_user.first_name %> <%= @current_user.last_name.upcase %></h4>
+            <p class="card-text"><span class="h5">Age : </span><%= @current_user.age %> ans</p>
+            <p class="card-text"><span class="h5">Ville :</span> <a href="<%= city_path(@current_user.city.id) %>"><%= @current_user.city.name %></p></a>
+
+            <p class="card-text"><span class="h5">Email :</span> <a href="mailto:<%= @current_user.email %>"><%= @current_user.email %></a></p>
+            <p class="card-text"><span class="h5">Description : </span><br /><%= @current_user.description %></p>
+            <a href="#" class="btn btn-info">Envoyer un message privé</a>
+            <div class="w-100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+
+</html>  

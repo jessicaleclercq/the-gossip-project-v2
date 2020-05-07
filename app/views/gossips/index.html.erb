@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+  <body>
+  <% if !flash[:success].nil? %>
+    <div class="alert alert-success" role="alert"><%= flash[:success] %></div>
+  <% end %>
+  <% if !flash[:update].nil? %>
+    <div class="alert alert-success" role="alert"><%= flash[:update] %></div>
+  <% end %>
+  <div>
+  <%if session[:user_id] != nil%>
+    <h1>Bienvenue <%= current_user.first_name %></h1>
+  <%else %>
+    <%if params[:first_name] == nil%>
+      <h1>Bienvenue ami visiteur</h1>
+    <%elsif params[:action] == "create" && params[:commit] == "S'inscrire"%>
+      <h1>Bienvenue sur le site du Gossip <%= params[:first_name] %></h1>
+    <%else %>
+      <h1>Bienvenue <%= params[:first_name] %></h1>
+  <% end %>
+  <% end %>
+  </div>
+  <main class="container">
+  <h2><button type="button" class="btn btn-secondary btn-lg"><%= link_to "Clique pour créer ton gossip", new_gossip_path %> </button></h2>
+
+  <h2>Voici la liste des gossips du moment:</h2>
+  <p>Cliquez sur le potin de votre choix pour en savoir plus :</p>
+  <div class="row row-cols-5 row-cols-md-3  p-md-0 m-md-0 d-flex justify-content-center">
+    <% Gossip.all.sort.each do |gossip| %>
+      <div class="card border-info text-center bg-light my-3 mx-3" style="max-width: 18rem;"> 
+        <div class="card-body">
+          <h5 class="card-title"><%= gossip.user.first_name %></h5>
+          <p class="card-text"><%= gossip.title %></p>
+        </div>
+        <div class="card-footer">
+          <%= link_to "Voir plus", gossip_path(gossip.id), class:"btn btn-outline-info mx-1 my-1" %>
+          <% if current_user%>
+            <% if current_user.id == gossip.user_id%>
+              <%= link_to "", user_path(current_user.id), class:"fas fa-star mx-1 my-1", style:"color:#efd807;" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</main>
+  </body>
+
+</html> 
