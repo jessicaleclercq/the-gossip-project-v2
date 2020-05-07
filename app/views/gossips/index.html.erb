@@ -23,11 +23,18 @@
   </div>
   
   <main class="container">
-
-  <h2><button type="button" class="btn btn-secondary btn-lg"><%= link_to "Click here to create your gossip", new_gossip_path %> </button></h2>
+  <br>    
+    <div class="jumbotron jumbotron-hero px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2><%= link_to "Create a new gossip", new_gossip_path, class:"btn btn-outline-info mx-1 my-1" %></h2>
+      </div>
+    </div>
 
   <h2>Here's some juicy gossip for you : </h2>
-  <p>Click on any gossip to know more...</p>
   <div class="row row-cols-5 row-cols-md-3  p-md-0 m-md-0 d-flex justify-content-center">
     <% Gossip.all.sort.each do |gossip| %>
       <div class="card border-info text-center bg-light my-3 mx-3" style="max-width: 18rem;"> 
@@ -36,7 +43,7 @@
           <p class="card-text"><%= gossip.title %></p>
         </div>
         <div class="card-footer">
-          <%= link_to "Voir plus", gossip_path(gossip.id), class:"btn btn-outline-info mx-1 my-1" %>
+          <%= link_to "See more", gossip_path(gossip.id), class:"btn btn-outline-info mx-1 my-1" %>
           <% if current_user%>
             <% if current_user.id == gossip.user_id%>
               <%= link_to "", user_path(current_user.id), class:"fas fa-star mx-1 my-1", style:"color:#efd807;" %>

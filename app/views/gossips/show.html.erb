@@ -38,15 +38,7 @@
       </div>
           
 <div justify-content-center>
-        <% @gossip.comments.each do |comment| %>
-          <p> <strong><%= comment.user.first_name %></strong>  </p>
-          <p>
-            <strong>Commentaire :</strong>
-            <%= comment.content %>
-          </p>
-          <%= link_to 'Modifier',  edit_gossip_comment_path(@gossip)%>
-        <% end %>  
-      </div>
+
       <h2>Commentaires :</h2>
           <div>
             <%= render 'comments/index'%>

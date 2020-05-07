@@ -1,13 +1,32 @@
-# README
+# 📫 The Gossip Project
 
-Ceci est le README de l'app The Gossip Project!
+L'appli pour balancer vos pires ragots aux yeux de tous et vous faire des amis...ou pas.
 
-* Ruby version 2.5.1p57
+### Configuration
+Entrez les commandes suivantes dans votre terminal :
 
-* Rails version 5.2.4.2
+`git clone git@github.com:luca-montaigut/TGP_rails.git`
 
-* Configuration
+`bundle install`
 
-Ouvrir les pages web depuis les navigateurs Mozilla Firefox ou Chrome de préférence. Avec Safari, l'expérience sera moins funky!
+### Database creation
 
-Pensez à bien faire un petit bundle install avant d'explorer l'application!
+`rails db:create`
+
+`rails db:migrate`
+
+### Database initialisation
+
+`rails db:seed`
+
+## 🔥 Connexion au site
+
+`rails server`
+
+Une fois le server connecté, rendez-vous sur :
+
+http://localhost:3000/
+
+Créer ensuite votre compte ou connectez-vous avec vos identifiants
+
+Bonne visite !

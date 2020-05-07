@@ -13,6 +13,19 @@
  *= require_tree .
  *= require_self
  */
+ .jumbotron-hero 
+{
+  /* Choisis la hauteur ici */
+  height: 400px;
+
+  /* Tu lui donnes une image de background */
+  background-image: url("images/mountain.png");
+
+  /* Centre l'image et la met bien sur tous les écrans */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 body {
   margin:0;
   width: 100%;
@@ -37,4 +50,6 @@ h2{
   font-size: 3em; 
   margin-bottom:20px;
  }
+
+
 
