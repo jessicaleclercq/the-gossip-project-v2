@@ -44,7 +44,7 @@ User.create(
 )
 end
 
-25.times do
+100.times do
 Gossip.create(
   title: Faker::Book.title,
   content: Faker::Hipster.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4),

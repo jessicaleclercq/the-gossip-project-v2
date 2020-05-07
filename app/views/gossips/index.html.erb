@@ -10,22 +10,24 @@
   <% end %>
   <div>
   <%if session[:user_id] != nil%>
-    <h1>Bienvenue <%= current_user.first_name %></h1>
+    <h1>Hey <%= current_user.first_name %></h1>
   <%else %>
     <%if params[:first_name] == nil%>
-      <h1>Bienvenue ami visiteur</h1>
+      <h1>Welcome hot stranger</h1>
     <%elsif params[:action] == "create" && params[:commit] == "S'inscrire"%>
-      <h1>Bienvenue sur le site du Gossip <%= params[:first_name] %></h1>
+      <h1>Welcome on our gossip website, <%= params[:first_name] %></h1>
     <%else %>
-      <h1>Bienvenue <%= params[:first_name] %></h1>
+      <h1>Welcome <%= params[:first_name] %></h1>
   <% end %>
   <% end %>
   </div>
+  
   <main class="container">
-  <h2><button type="button" class="btn btn-secondary btn-lg"><%= link_to "Clique pour créer ton gossip", new_gossip_path %> </button></h2>
 
-  <h2>Voici la liste des gossips du moment:</h2>
-  <p>Cliquez sur le potin de votre choix pour en savoir plus :</p>
+  <h2><button type="button" class="btn btn-secondary btn-lg"><%= link_to "Click here to create your gossip", new_gossip_path %> </button></h2>
+
+  <h2>Here's some juicy gossip for you : </h2>
+  <p>Click on any gossip to know more...</p>
   <div class="row row-cols-5 row-cols-md-3  p-md-0 m-md-0 d-flex justify-content-center">
     <% Gossip.all.sort.each do |gossip| %>
       <div class="card border-info text-center bg-light my-3 mx-3" style="max-width: 18rem;"> 
