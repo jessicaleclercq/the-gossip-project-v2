@@ -5,8 +5,6 @@ L'appli pour balancer vos pires ragots aux yeux de tous et vous faire des amis..
 ### Configuration
 Entrez les commandes suivantes dans votre terminal :
 
-`git clone git@github.com:luca-montaigut/TGP_rails.git`
-
 `bundle install`
 
 ### Database creation
