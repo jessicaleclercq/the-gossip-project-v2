@@ -17,9 +17,9 @@ class CommentsController < ApplicationController
         @comment = Comment.create(content: params[:content], user: User.last, gossip_id: @gossip.id)
   
         if @comment.save
-            redirect_to gossip_path(@gossip)
+            redirect_to gossip_path(params[:gossip_id])
         else
-            redirect_to gossip_path(@gossip), alert: "Tu n'as rien écris ..."
+            redirect_to gossip_path(params[:gossip_id]), alert: "Tu n'as rien écris ..."
         end
     end
   
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
       @gossip = Gossip.find(params[:gossip_id]) 
       @comment = Comment.find(params[:id])
       if @comment.update(content: params[:content])
-        redirect_to gossip_path
+         redirect_to gossip_path(params[:gossip_id]) #changement pour bug edit 
         flash[:success] = "Le commentaire a bien été modifié!"
       else
         render :edit

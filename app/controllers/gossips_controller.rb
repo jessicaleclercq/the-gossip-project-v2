@@ -20,7 +20,7 @@ class GossipsController < ApplicationController
   end
 
 def create
-    @gossip = Gossip.new(user: User.first, title: params[:title], content: params[:content])
+    @gossip = Gossip.new(user: current_user, title: params[:title], content: params[:content])
 
     if @gossip.save      
       redirect_to "/"
@@ -34,9 +34,7 @@ def create
 
   def edit
     @gossip = Gossip.find(params[:id])
-
     # Méthode qui récupère le potin concerné et l'envoie à la view edit (edit.html.erb) pour affichage dans un formulaire d'édition
-
   end
 
   def update
@@ -51,7 +49,10 @@ def create
   end
 
   def destroy
-    Gossip.find(params[:id]).delete
-    redirect_to gossips_path
+    @gossip = Gossip.find(params[:id])
+    if current_user?(@gossip.user)
+      @gossip.delete
+      redirect_to gossips_path
+    end      
   end
 end
