@@ -52,7 +52,10 @@ def create
     @gossip = Gossip.find(params[:id])
     if current_user?(@gossip.user)
       @gossip.delete
-      redirect_to gossips_path
+      flash[:danger] = 'Tu as supprimé un potin !'
+    else
+      flash[:danger] = "You can't modify or delete a gossip you didn't create"
+      render 'index'
     end      
   end
 end

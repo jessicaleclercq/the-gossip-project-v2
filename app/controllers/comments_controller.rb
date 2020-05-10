@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
   
     def create
         @gossip = Gossip.find(params[:gossip_id])
-        @comment = Comment.create(content: params[:content], user: User.last, gossip_id: @gossip.id)
+        @comment = Comment.create(content: params[:content], user_id: current_user.id, gossip_id: @gossip.id)
   
         if @comment.save
             redirect_to gossip_path(params[:gossip_id])

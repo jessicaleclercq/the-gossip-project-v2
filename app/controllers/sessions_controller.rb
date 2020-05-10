@@ -16,6 +16,8 @@ class SessionsController < ApplicationController
     # on vérifie si l'utilisateur existe bien ET si on arrive à l'authentifier (méthode bcrypt) avec le mot de passe 
     if @user && @user.authenticate(params[:password])
       log_in(@user)
+
+    # redirige où tu veux, avec un flash ou pas
       render 'gossips/index'
     else
       @user = User.new    
@@ -23,7 +25,7 @@ class SessionsController < ApplicationController
     end    
   end
 
-  def destroy
+def destroy
     session.delete(:user_id)   
     redirect_to :root 
   end
